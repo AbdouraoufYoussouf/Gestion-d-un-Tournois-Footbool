@@ -1,0 +1,11 @@
+
+      security:
+        oauth2:
+          client:
+            registration:
+              facebook:
+                client-id: 296828589175613
+                client-secret: aedc5d4bf31b0592039db73c84f21c7b
+              linkedin:
+                client-id: 77ubr4p1zx6f1f
+                client-secret: e4LkQ6MvevCFQ4JK

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Add Joueurs</title>
+</head>
+<body>
+    <div layout:fragment="content" class="container text-center">
+        <div>
+            <h2 class="card-header text-center" >Bien venu dans le Tournois </h2>
+        </div>
+        <div class="card-body d-flex flex-column justify-content-center">
+            <p th:text="${nom}"></p>
+            <p th:text="${email}"></p>
+            
+        </div>
+       
+    </div>
+</body>
+</html>

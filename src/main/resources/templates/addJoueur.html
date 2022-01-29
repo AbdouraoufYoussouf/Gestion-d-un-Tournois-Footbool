@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <title>Add Joueurs</title>
+</head>
+<body>
+    <div layout:fragment="content" class="container text-center">
+        <div>
+            <h2 class="card-header text-center" >Ajouer un Joueur</h2>
+        </div>
+        <form th:action="@{/regiterjoueur}" th:object="${joueur}" method="post"
+            style="max-width: 600px;margin: 0 auto">
+
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Nom Joueur</label>
+                <div class="col-sm-8">
+                    <input type="text" th:value="${joueur.nomJoueur}" th:field="*{nomJoueur}" class="form-control"  required placeholder="Nom"/>
+                </div>
+
+            </div>
+            <div class="mt-3 row">
+                <label  class="col-sm-4 col-form-label">Poste du Joueur</label>
+                <div class="col-sm-8">
+                    <input type="text" th:value="${joueur.posteJoueur}" th:field="*{posteJoueur}" class="form-control"  required placeholder="Poste" />
+                </div>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Equipe du Joueur</label>
+                <div class="col-sm-8">
+
+                    <select th:field="*{equipes}" class="form-select" aria-label="Default select example" required>
+                        <th:block th:each="equi:${listEquipe}">
+                            <option th:text="${equi.nomEquipe}" th:value="${equi.idEquipe}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary mt-3 text-lg-start">Enregister</button>
+        </form>
+    </div>
+</body>
+</html>

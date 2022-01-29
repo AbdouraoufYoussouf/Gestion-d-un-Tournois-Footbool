@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+
+<body>
+    <div layout:fragment="content" class="container text-center">
+
+        <div>
+            <h2 class="card-header bg-primary text-center text-light">Ajouter un Utilisateur</h2>
+        </div>
+        <p th:if="${exist}"
+            style="color: white; margin-right: 20px; padding-top: 4px; height: 30px;text-align: center; margin-left: 120px;background-color: rgb(216, 64, 64);"
+            th:text="${exist}"></p>
+        <form th:action="@{/registerUser}" th:object="${user}" method="post" style="max-width: 600px;margin: 0 auto">
+            <div th:if="${succes}">
+                <div class="alert alert-info">Votre compte a bien été enregistrer, Veuillerz vous connecter!</div>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Nom</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{nom}" class="form-control"  placeholder="nom" />
+                </div>
+                <p th:errors="${user.nom}" style="color: red;text-align: center;height: 10px;"></p>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Prenom</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{prenom}" class="form-control"  placeholder="Prenom" />
+                </div>
+                <p th:errors="${user.prenom}" style="color: red;text-align: center;height: 10px;"></p>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{username}" class="form-control"  placeholder="Email" />
+                </div>
+                <p th:errors="${user.username}" style="color: red;text-align: center;height: 10px;"></p>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Mot de Passe</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{password}" class="form-control"  placeholder=" Password" />
+                </div>
+                <p th:errors="${user.password}" style="color: red;text-align: center;height: 10px;"></p>
+            </div>
+
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Etat de user</label>
+                <div class="col-sm-8">
+
+                    <select th:field="*{active}" class="form-select" aria-label="Default select example" >
+
+                        <option th:value="1">active</option>
+                        <option th:value="0">inactif</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">Role</label>
+                <div class="col-sm-8">
+                    <select th:field="*{roles}" class="form-select" aria-label="Default select example" >
+                        <option th:value="ROLE_USER">User</option>
+                        <option th:value="ROLE_ADMIN">Admin</option>
+                    </select>
+                  
+                </div>
+            </div>
+            <button type="submit" class="btn-primary mt-3 text-lg-start">Enregister</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/Css/bootstrap.min.css" th:href="@{Css/bootstrap.min.css}">
+    <script src="https://kit.fontawesome.com/3e4a5718ac.js" crossorigin="anonymous"></script>
+    <title>Layout</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/home}">CAN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/match}">Matchs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/equipe}">Equipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/joueur}">Joueurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/stade}">Stades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/arbitre}">Arbitre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user}">Users</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="d-flex flex-row me-3 ">
+
+            <a sec:authorize="isAuthenticated()" class="btn btn-primary me-2  " style="font-size: 10px; text-decoration: none;color: white;display: flex;flex-direction: row;" th:href="@{/userLogin}" >
+                <i class="fas fa-user-circle" style="font-size: 25px;"></i>
+                <span sec:authentication="name" style="margin:10px 10px 0px 5px;"></span>
+            </a>
+
+            
+            <form sec:authorize="isAuthenticated()" name="logoutForm" th:action="@{/logout}" method="post">
+                <button class="btn btn-danger" type="submit">Deconnexion</button>
+            </form>
+        
+            
+        </div>
+    </nav>
+    <div class="container">
+        <section>
+            <div layout:fragment="content">
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

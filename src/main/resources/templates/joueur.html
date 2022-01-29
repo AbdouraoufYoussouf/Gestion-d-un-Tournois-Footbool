@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Joueurs</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="card">
+        <h2 class="card-header text-center" >Les Joueurs</h2>
+        <div class="card-body">
+           
+            <div class="d-flex flex-row justify-content-between " >
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/addJoueur}" class="btn btn-primary m-1">Ajouter un Joueur</a>
+                <form th:action="@{/joueur}" method="get" >
+                    <input  type="text" placeholder="Search" th:value="${motCle}" name="motCle">
+                    <button class="btn btn-primary" type="submit">chercher</button>
+                </form>
+            </div>
+
+            <table class="table  ">
+                <thead>
+                <tr class="table-dark ">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom Joueur</th>
+                    <th scope="col">Poste du Joueur</th>
+                    <th scope="col">Equipe du Joueur</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" >Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="jou:${lesJoueurs}" class="table-secondary">
+                    <td th:text="${jou.idJoueur}">
+                    <td th:text="${jou.nomJoueur}">
+                    <td th:text="${jou.posteJoueur}">
+                    <td th:text="${jou.equipes.nomEquipe}">
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" > 
+                        <a onclick="return confirm('Vous êtes sûre de Supprimer')" th:href="@{/delete(id=${jou.idJoueur}, page=${currentPage}, motCle=${motCle})}" class="btn btn-danger">Delete</a>
+                        <a th:href="@{/editJoueur(id=${jou.idJoueur})}" class="btn btn-success">Edit</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Page</a></li>
+
+                    <li th:each="page,status:${pages}" th:class="${currentPage==status.index? 'page-item active' : 'page-item'}">
+                        <a class="page-link" th:text="${status.index} " th:href="@{/joueur(page=${status.index},motCle=${motCle})} "></a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

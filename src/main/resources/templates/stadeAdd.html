@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org" xmlns:page
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Equipe</title>
+</head>
+<body>
+    <div layout:fragment="content" class="container text-center">
+
+        <div>
+            <h2 class="card-header bg-primary text-center text-light" >Ajouer un stade</h2>
+        </div>
+        <form th:action="@{/registerStade}" th:object="${stade}" method="post"
+              style="max-width: 600px;margin: 0 auto">
+            <div class="mt-3 row">
+                <label  class="col-sm-4 col-form-label">Nom stade</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{nomStade}" class="form-control"  required placeholder="Nom" />
+                </div>
+            </div>
+            <div class="mt-3 row">
+                <label class="col-sm-4 col-form-label">ville Stade</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{villeStade}" class="form-control" required placeholder=" Ville" />
+                </div>
+            </div>
+            <button type="submit" class="btn-primary mt-3 text-lg-start">Enregister</button>
+        </form>
+
+    </div>
+</body>
+</html>

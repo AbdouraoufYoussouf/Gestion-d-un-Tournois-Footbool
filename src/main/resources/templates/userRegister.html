@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:page xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+
+<body>
+    <div layout:fragment="content" class="container align-self-center">
+
+        <div class="card-body d-flex flex-column justify-content-center">
+
+            <div>
+                <h2 class=" m-4 text-dark text-center">Ajout d'un Utilisateur</h2>
+
+            </div>
+
+            <div class=" d-flex flex-column align-self-center"
+                style="height: 400px;width: 50%; border: 2px solid gray; border-radius: 5px; ">
+
+                <h3 class=" mt-3 mb-3 text-dark text-center text-light">Entrez vos informations </h3>
+
+                <form th:action="@{/userSave}" method="post" th:object="${user}">
+                    <div th:if="${succes}">
+                        <div class="alert alert-info">Votre compte a bien été enregistrer, Veuillerz vous connecter!</div>
+                    </div>
+
+                    <p th:if="${exist}" style="color: white; margin-right: 20px; padding-top: 4px; height: 30px;text-align: center; margin-left: 120px;background-color: rgb(216, 64, 64);"th:text="${exist}" ></p>
+
+                    <div class="col ms-4 me-4 d-flex flex-column ">
+
+                        <div style="display: flex;flex-direction: column; justify-content: space-between; " class="mb-1 ">
+                            <div style="display: flex;justify-content: space-between; " class="mb-1 ">
+                                <label for="nom" class="form-label">Nom</label>
+                                <input  id="nom" th:field="*{nom}" type="text" class="form-control  ms-2"
+                                    placeholder="Votre nom"  autofocus="autofocus" style="width: 390px;" name="nom" th:value="${user.nom}">
+                            </div>
+                            <p th:errors="${user.nom}" style="color: red;text-align: center;height: 10px;"></p>
+                        </div>
+                        <div style="display: flex;flex-direction: column; justify-content: space-between; " class="mb-1 ">
+                            <div style="display: flex;justify-content: space-between; " class="mb-1 ">
+                                <label for="prenom" class="form-label">Prenom</label>
+                                <input  id="prenom" th:field="*{prenom}" type="text" class="form-control  ms-2"
+                                    placeholder="Votre prenom"  autofocus="autofocus" style="width: 390px;" name="prenom" th:value="${user.prenom}">
+                            </div>
+                            <p th:errors="${user.prenom}" style="color: red;text-align: center;height: 10px;"></p>
+                        </div>
+                        <div style="display: flex;flex-direction: column; justify-content: space-between; " class="mb-1 ">
+                            <div style="display: flex;justify-content: space-between; " class="mb-1 ">
+                                <label for="email" class="form-label">Email</label>
+                                <input  id="email" th:field="*{username}" type="text" class="form-control  ms-2"
+                                    placeholder="Votre email"  autofocus="autofocus" style="width: 390px;" name="username" th:value="${user.username}">
+                            </div>
+                            <p th:errors="${user.username}" style="color: red;text-align: center;height: 10px;"></p>
+                        </div>
+                        <div style="display: flex;flex-direction: column; justify-content: space-between; " class="mb-1 ">
+                            <div style="display: flex;justify-content: space-between; " class="mb-1 ">
+                                <label for="password" class="form-label">Password</label>
+                                <input  id="password" th:field="*{password}" type="text" class="form-control  ms-2"
+                                    placeholder="Votre password"  autofocus="autofocus" style="width: 390px;" name="password" th:value="${user.password}">
+                            </div>
+                            <p th:errors="${user.password}" style="color: red;text-align: center;height: 10px;"></p>
+                        </div>
+                       
+
+                        <div class="mt-4 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary me-2 align-self-center ">Enregister</button>
+                            <span class="mt-2">Vous êtes déjà Enregister? <a
+                                    style="text-decoration: none; font-size: 16px;" th:href="@{/userLogin}">Connectez-vous
+                                    ici</a> </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
